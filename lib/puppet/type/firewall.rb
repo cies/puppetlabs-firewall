@@ -91,6 +91,11 @@ Puppet::Type.newtype(:firewall) do
     munge do |value|
       @resource.host_to_ip(value)
     end
+
+    def should_to_s(value)
+      value = [value] unless value.is_a?(Array)
+      value.join(',')
+    end
   end
 
   newproperty(:destination) do
@@ -104,6 +109,11 @@ Puppet::Type.newtype(:firewall) do
 
     munge do |value|
       @resource.host_to_ip(value)
+    end
+
+    def should_to_s(value)
+      value = [value] unless value.is_a?(Array)
+      value.join(',')
     end
   end
 
